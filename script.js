@@ -12,7 +12,7 @@ const gameController = (() => {
 
 const gameBoard = (() =>{
 
-    const arr = ["x", "x", "x", "o", "o","x", "x", "x","o"];
+    const arr = [];
     
 
     function add(marker) {
