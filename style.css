@@ -1,0 +1,24 @@
+main {
+    height: 98vh;
+}
+
+.gameboard-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+
+
+.gameboard {
+    width: 400px;
+    height: 400px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    background-color: red;
+}
+
+.cell {
+    border: 1px solid white;
+}
