@@ -16,6 +16,10 @@ const game = (() => {
         togglePlayer = true;
     }
 
+    function stop() {
+        displayController.removeClickEvent();
+    }
+
     // Continue the game when a cell is clicked -----
     function play(index) {
         // Check if all the cells are NOT clicked
@@ -80,16 +84,19 @@ const game = (() => {
         else if(arr[2] === arr[4] && arr[4] === arr[6]) {
             winnerMarker = arr[2];
         }
-        
+        console.log(winnerMarker);
         if(winnerMarker === "" && numberOfTries === 9) {
             isTie();
+            stop();
         }
-        else if(player1.marker == winnerMarker)
+        else if(player1.marker === winnerMarker)
         {
             console.log(`Player 1 as ${winnerMarker} has won`);
+            stop();
         }
-        else if(player1.marker == winnerMarker) {
+        else if(player2.marker === winnerMarker) {
             console.log(`Player 2 as ${winnerMarker} has won`);
+            stop();
         }
     }
 
@@ -127,6 +134,12 @@ const displayController = (() => {
         });
     }
 
+    function removeClickEvent() {
+        cells.forEach(cell => {
+            cell.removeEventListener("click", clickEvent);
+        })
+    }
+
     function clickEvent(e) {
         // Check to see if there is already a marker in place
         if(e.target.textContent == "") {
@@ -149,7 +162,7 @@ const displayController = (() => {
 
     }
 
-    return {fillCells, clearCells};
+    return {fillCells, clearCells, removeClickEvent};
 
 })();
 
