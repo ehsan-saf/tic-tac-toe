@@ -2,6 +2,10 @@ const game = (() => {
 
     let togglePlayer = true;
     let numberOfTries = 0;
+    let index = 0;
+    let combinations = {
+    
+    };
 
     function start() {
         reset();
@@ -15,8 +19,8 @@ const game = (() => {
     // Continue the game when a cell is clicked -----
     function play(index) {
         // Check if all the cells are NOT clicked
-        if(numberOfTries != 9) {
-            numberOfTries++;
+        numberOfTries++;
+        if(numberOfTries <= 9){        
             if(togglePlayer) {
                 gameBoard.add(index, player1.marker);
             }
@@ -26,6 +30,69 @@ const game = (() => {
             displayController.fillCells();
             togglePlayer = !togglePlayer;
         }
+        checkWinner();
+        
+    }
+
+    function isTie() {
+        console.log("It's a tie");
+    }
+
+    function isGameOver() {
+        // numberOfTries++;
+        // if(numberOfTries < 9 && !checkWinner()) {
+        //     return false;
+        // }
+        // else if(numberOfTries === 9 && !checkWinner()) {
+        //     isTie();
+        //     return true;
+        // }
+        // else if(numberOfTries === 9 && checkWinner()) {
+        //     return true;
+        // }
+        
+    }
+
+    function checkWinner() {
+        const arr = gameBoard.array;
+        let winnerMarker = "";
+        if(arr[0] === arr[1] && arr[1] === arr[2]) {
+            winnerMarker = arr[0];
+        }
+        else if(arr[3] === arr[4] && arr[4] === arr[5]) {
+            winnerMarker = arr[3];
+        }
+        else if(arr[6] === arr[7] && arr[7] === arr[8]) {
+            winnerMarker = arr[6];
+        }
+        else if(arr[0] === arr[3] && arr[3] === arr[6]) {
+            winnerMarker = arr[0];
+        }
+        else if(arr[1] === arr[4] && arr[4] === arr[7]) {
+            winnerMarker = arr[1];
+        }
+        else if(arr[2] === arr[5] && arr[5] === arr[8]) {
+            winnerMarker = arr[2];
+        }
+        else if(arr[0] === arr[4] && arr[4] === arr[8]) {
+            winnerMarker = arr[0];
+        }
+        else if(arr[2] === arr[4] && arr[4] === arr[6]) {
+            winnerMarker = arr[2];
+        }
+        
+        if(winnerMarker === "") {
+            return false;
+        }
+        else {
+            if(player1.marker == winnerMarker) {
+                console.log(`Player 1 as ${winnerMarker} has won`);
+            }
+            else {
+                console.log(`Player 2 as ${winnerMarker} has won`);
+            }
+            return true;
+        }
     }
 
     return {start, reset, play};
@@ -34,7 +101,9 @@ const game = (() => {
 
 const gameBoard = (() =>{
 
-    const arr = new Array(9);
+    // Add a default value so that
+    // empty items are not equal
+    const arr = [0, 1, 2, 3, 4, 5, 6, 7, 8];
     
 
     function add(index ,marker) {
@@ -61,6 +130,7 @@ const displayController = (() => {
     }
 
     function clickEvent(e) {
+        // Check to see if there is already a marker in place
         if(e.target.textContent == "") {
             // Add a marker at the corresponding index of the array
             game.play(e.target.dataset.index);
@@ -71,7 +141,7 @@ const displayController = (() => {
     function fillCells() {
         for(let i = 0; i < 9; i++) {
             const marker = gameBoard.array[i];
-            if(marker !== undefined) {
+            if(typeof marker !== 'number') {
                 cells[i].textContent = marker;
             }
         }
