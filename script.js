@@ -81,17 +81,15 @@ const game = (() => {
             winnerMarker = arr[2];
         }
         
-        if(winnerMarker === "") {
-            return false;
+        if(winnerMarker === "" && numberOfTries === 9) {
+            isTie();
         }
-        else {
-            if(player1.marker == winnerMarker) {
-                console.log(`Player 1 as ${winnerMarker} has won`);
-            }
-            else {
-                console.log(`Player 2 as ${winnerMarker} has won`);
-            }
-            return true;
+        else if(player1.marker == winnerMarker)
+        {
+            console.log(`Player 1 as ${winnerMarker} has won`);
+        }
+        else if(player1.marker == winnerMarker) {
+            console.log(`Player 2 as ${winnerMarker} has won`);
         }
     }
 
