@@ -130,7 +130,7 @@ const displayController = (() => {
 
     function addClickEvent() {
         cells.forEach(cell => {
-            cell.addEventListener("click", clickEvent)
+            cell.addEventListener("click", clickEvent);
         });
     }
 
@@ -142,9 +142,10 @@ const displayController = (() => {
 
     function clickEvent(e) {
         // Check to see if there is already a marker in place
-        if(e.target.textContent == "") {
+        const index = e.target.dataset.index;
+        if(typeof gameBoard.array[index] == "number") {
             // Add a marker at the corresponding index of the array
-            game.play(e.target.dataset.index);
+            game.play(index);
         }
     }
 
@@ -153,7 +154,12 @@ const displayController = (() => {
         for(let i = 0; i < 9; i++) {
             const marker = gameBoard.array[i];
             if(typeof marker !== 'number') {
-                cells[i].textContent = marker;
+                if(marker === "x") {
+                    cells[i].style.backgroundImage = "url(./icons/cross.png)";
+                }
+                else {
+                    cells[i].style.backgroundImage = "url(./icons/circle.png)";
+                }
             }
         }
     }
@@ -161,6 +167,8 @@ const displayController = (() => {
     function clearCells() {
 
     }
+
+    
 
     return {fillCells, clearCells, removeClickEvent};
 
