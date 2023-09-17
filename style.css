@@ -110,6 +110,7 @@ input::placeholder {
     margin: auto;
     padding: 15px 25px;
     font-size: 1.4rem;
+    letter-spacing: 5px;
     transition: all 0.2s;
 }
 
