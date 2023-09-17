@@ -86,6 +86,7 @@ let player2 = player("", "o");
 
 const playerInput = (() => {
 
+    const infoContainer = document.querySelector(".info-container");
     const playerXName = document.getElementById("x-name").value;
     const playerOName = document.getElementById("o-name").value;
 
@@ -105,7 +106,11 @@ const playerInput = (() => {
         }
     }
 
-    return { setPlayerName };
+    function hideInputs() {
+        infoContainer.classList.add("hidden");
+    }
+
+    return { setPlayerName, hideInputs };
 
 })();
 
@@ -121,10 +126,10 @@ const game = (() => {
 
     function start() {
         playerInput.setPlayerName();
+        playerInput.hideInputs();
         displayController.showGameBoard();
     }
 
-    // start();
 
     function reset() {
         gameBoard.array = [];

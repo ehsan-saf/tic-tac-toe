@@ -47,14 +47,15 @@ main {
     scale: 0.95;
 }
 
-.hidden {
-    display: none;
-}
 
 .info-container {
     display: flex;
     justify-content: center;
     margin-top: 15vh;
+}
+
+.hidden {
+    display: none;
 }
 
 .player-info {
