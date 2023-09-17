@@ -85,14 +85,17 @@ input {
     font-size: 1.3rem;
     background-color: transparent;
     color: #13315C;
+    transition: all 0.2s;
 }
 
 input:focus {
     outline: none;
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 10px 24px;
 }
 
 input::placeholder {
     color: #13315C;
+    opacity: 0.7;
 }
 
 .info-row>label {
@@ -103,10 +106,10 @@ input::placeholder {
     background: none;
     border: 1.5px solid gray;
     border-radius: 5px;
-    width: 100px;
+    width: 150px;
     margin: auto;
-    padding: 10px 25px;
-    font-size: 1.3rem;
+    padding: 15px 25px;
+    font-size: 1.4rem;
     transition: all 0.2s;
 }
 
