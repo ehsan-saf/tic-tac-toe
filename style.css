@@ -118,4 +118,5 @@ input::placeholder {
     cursor: pointer;
     background-color: #13315C;
     color: white;
+    scale: 0.96;
 }
