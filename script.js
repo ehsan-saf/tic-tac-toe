@@ -91,13 +91,10 @@ const game = (() => {
 
     let togglePlayer = true;
     let numberOfTries = 0;
+    let startButton = document.querySelector(".start-button");
     let index = 0;
-    let combinations = {
-    
-    };
 
     function start() {
-        // reset();
         displayController.showGameBoard();
     }
 
