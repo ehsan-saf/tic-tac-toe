@@ -81,8 +81,33 @@ const player = (name ,marker) => {
     return {name ,marker};
 };
 
-let player1 = player("pl1","x");
-let player2 = player("pl2","o"); 
+let player1 = player("", "x");
+let player2 = player("", "o");
+
+const playerInput = (() => {
+
+    const playerXName = document.getElementById("x-name").value;
+    const playerOName = document.getElementById("o-name").value;
+
+    function setPlayerName() {
+        if(playerXName.trim() === "") {
+            player1.name = "Player X";
+        }
+        else {
+            player1.name = `${playerOName} as X`;
+        }
+
+        if(playerOName.trim() === "") {
+            player2.name = "Player O";
+        }
+        else {
+            player2.name = `${playerOName} as O`;
+        }
+    }
+
+    return { setPlayerName };
+
+})();
 
 
 // Game module that controls the game flow ----------------
@@ -92,9 +117,10 @@ const game = (() => {
     let togglePlayer = true;
     let numberOfTries = 0;
     let startButton = document.querySelector(".start-button");
-    let index = 0;
+    startButton.addEventListener("click", start);
 
     function start() {
+        playerInput.setPlayerName();
         displayController.showGameBoard();
     }
 
@@ -130,21 +156,6 @@ const game = (() => {
 
     function isTie() {
         console.log("It's a tie");
-    }
-
-    function isGameOver() {
-        // numberOfTries++;
-        // if(numberOfTries < 9 && !checkWinner()) {
-        //     return false;
-        // }
-        // else if(numberOfTries === 9 && !checkWinner()) {
-        //     isTie();
-        //     return true;
-        // }
-        // else if(numberOfTries === 9 && checkWinner()) {
-        //     return true;
-        // }
-        
     }
 
     function checkWinner() {
