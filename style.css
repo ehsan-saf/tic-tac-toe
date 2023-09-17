@@ -4,6 +4,10 @@
     box-sizing: border-box;
 }
 
+body {
+    background-color: #F8F7FF;
+}
+
 main {
     height: 98vh;
 }
@@ -39,6 +43,75 @@ main {
     transition: scale 0.2s;
 }
 
-.cell-hover:hover {
+.cell:hover {
     scale: 0.95;
+}
+
+.hidden {
+    display: none;
+}
+
+.info-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 15vh;
+}
+
+.player-info {
+    /* padding: 32px 180px 180px;
+    border: 2px solid gray;
+    border-radius: 5px;
+    background-color: snow; */
+}
+
+/* Input and button container */
+.inputs-row {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
+
+/* label and input */
+.info-row {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+input {
+    border-radius: 5px;
+    border: 1px solid #450920;
+    padding: 15px 20px 15px 10px;
+    font-size: 1.3rem;
+    background-color: #610F7F;
+    color: white;
+}
+
+input:focus {
+    outline: none;
+}
+
+input::placeholder {
+    color: white;
+}
+
+.info-row>label {
+    font-size: 1.3rem;
+}
+
+.submit-info {
+    background: none;
+    border: 1.5px solid gray;
+    border-radius: 5px;
+    width: 100px;
+    margin: auto;
+    padding: 10px 25px;
+    font-size: 1.3rem;
+    transition: all 0.2s;
+}
+
+.submit-info:hover {
+    cursor: pointer;
+    background-color: #9381FF;
+    color: white;
 }

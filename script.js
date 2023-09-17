@@ -1,3 +1,92 @@
+// Controls the game board array which holds cells' values ----
+
+const gameBoard = (() =>{
+
+    // Add a default value so that
+    // empty items are not equal
+    const arr = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+    
+
+    function add(index ,marker) {
+        arr[index] = marker;
+    }
+
+    function getLength() {
+        return arr.length;
+    }
+
+    return {array: arr, add};
+
+})();
+
+// Controls the game board cells --------------------------
+
+const displayController = (() => {
+
+    const gameboardContainer = document.querySelector(".gameboard-container")
+    const cells = document.querySelectorAll(".cell");
+    addClickEvent();
+
+    function addClickEvent() {
+        cells.forEach(cell => {
+            cell.addEventListener("click", clickEvent);
+        });
+    }
+
+    function removeClickEvent() {
+        cells.forEach(cell => {
+            cell.removeEventListener("click", clickEvent);
+        })
+    }
+
+    function clickEvent(e) {
+        // Check to see if there is already a marker in place
+        const index = e.target.dataset.index;
+        if(typeof gameBoard.array[index] == "number") {
+            // Add a marker at the corresponding index of the array
+            game.play(index);
+        }
+    }
+
+    function showGameBoard() {
+        gameboardContainer.classList.remove("hidden");
+    }
+
+
+    function fillCells() {
+        for(let i = 0; i < 9; i++) {
+            const marker = gameBoard.array[i];
+            if(typeof marker !== 'number') {
+                if(marker === "x") {
+                    cells[i].style.backgroundImage = "url(./icons/cross.png)";
+                }
+                else {
+                    cells[i].style.backgroundImage = "url(./icons/circle.png)";
+                }
+            }
+        }
+    }
+
+    function clearCells() {
+
+    }
+
+    
+
+    return {fillCells, clearCells, removeClickEvent, showGameBoard};
+
+})();
+
+const player = (name ,marker) => {
+    return {name ,marker};
+};
+
+let player1 = player("pl1","x");
+let player2 = player("pl2","o"); 
+
+
+// Game module that controls the game flow ----------------
+
 const game = (() => {
 
     let togglePlayer = true;
@@ -8,8 +97,12 @@ const game = (() => {
     };
 
     function start() {
-        reset();
+        // reset();
+        displayController.showGameBoard();
     }
+
+    // start();
+
     function reset() {
         gameBoard.array = [];
         numberOfTries = 0;
@@ -84,7 +177,6 @@ const game = (() => {
         else if(arr[2] === arr[4] && arr[4] === arr[6]) {
             winnerMarker = arr[2];
         }
-        console.log(winnerMarker);
         if(winnerMarker === "" && numberOfTries === 9) {
             isTie();
             stop();
@@ -102,82 +194,4 @@ const game = (() => {
 
     return {start, reset, play};
 })();
-
-
-const gameBoard = (() =>{
-
-    // Add a default value so that
-    // empty items are not equal
-    const arr = [0, 1, 2, 3, 4, 5, 6, 7, 8];
-    
-
-    function add(index ,marker) {
-        arr[index] = marker;
-    }
-
-    function getLength() {
-        return arr.length;
-    }
-
-    return {array: arr, add};
-
-})();
-
-const displayController = (() => {
-
-    const cells = document.querySelectorAll(".cell");
-    addClickEvent();
-
-    function addClickEvent() {
-        cells.forEach(cell => {
-            cell.addEventListener("click", clickEvent);
-        });
-    }
-
-    function removeClickEvent() {
-        cells.forEach(cell => {
-            cell.removeEventListener("click", clickEvent);
-        })
-    }
-
-    function clickEvent(e) {
-        // Check to see if there is already a marker in place
-        const index = e.target.dataset.index;
-        if(typeof gameBoard.array[index] == "number") {
-            // Add a marker at the corresponding index of the array
-            game.play(index);
-        }
-    }
-
-
-    function fillCells() {
-        for(let i = 0; i < 9; i++) {
-            const marker = gameBoard.array[i];
-            if(typeof marker !== 'number') {
-                if(marker === "x") {
-                    cells[i].style.backgroundImage = "url(./icons/cross.png)";
-                }
-                else {
-                    cells[i].style.backgroundImage = "url(./icons/circle.png)";
-                }
-            }
-        }
-    }
-
-    function clearCells() {
-
-    }
-
-    
-
-    return {fillCells, clearCells, removeClickEvent};
-
-})();
-
-const player = (marker) => {
-    return {marker};
-};
-
-let player1 = player("x");
-let player2 = player("o"); 
 
