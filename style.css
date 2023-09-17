@@ -68,7 +68,7 @@ main {
 .inputs-row {
     display: flex;
     flex-direction: column;
-    gap: 30px;
+    gap: 40px;
 }
 
 /* label and input */
@@ -83,8 +83,8 @@ input {
     border: 1px solid #450920;
     padding: 15px 20px 15px 10px;
     font-size: 1.3rem;
-    background-color: #610F7F;
-    color: white;
+    background-color: transparent;
+    color: #13315C;
 }
 
 input:focus {
@@ -92,7 +92,7 @@ input:focus {
 }
 
 input::placeholder {
-    color: white;
+    color: #13315C;
 }
 
 .info-row>label {
@@ -112,6 +112,6 @@ input::placeholder {
 
 .submit-info:hover {
     cursor: pointer;
-    background-color: #9381FF;
+    background-color: #13315C;
     color: white;
 }
