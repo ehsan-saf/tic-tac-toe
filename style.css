@@ -12,10 +12,24 @@ main {
     height: 98vh;
 }
 
+/* --------- Names and turns ------------  */
+
+.player-names {
+    margin-top: 8vh;
+    display: flex;
+    gap: 20vw;
+}
+
+
+
+/* --------------   Game board ---------------- */
+
 .gameboard-container {
     display: flex;
+    flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: flex-start;
+    gap: 6vh;
     height: 100%;
 }
 
@@ -47,6 +61,7 @@ main {
     scale: 0.95;
 }
 
+/* ----------- Player Info(Beginning) ---- */
 
 .info-container {
     display: flex;
@@ -122,6 +137,8 @@ input::placeholder {
     scale: 1.1;
 }
 
+
+/*-----------  Animations -------- */
 
 .hidden {
     display: none;
