@@ -54,9 +54,7 @@ main {
     margin-top: 15vh;
 }
 
-.hidden {
-    display: none;
-}
+
 
 .player-info {
     /* padding: 32px 180px 180px;
@@ -122,4 +120,45 @@ input::placeholder {
     background-color: transparent;
     color: #13315C;
     scale: 1.1;
+}
+
+
+.hidden {
+    display: none;
+}
+
+.fadeOut {
+    animation-name: fadeOut;
+    animation-duration: 1.2s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fadeOut {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(0);
+    }
+}
+
+.fadeIn {
+    animation-name: fadeIn;
+    animation-duration: 1.2s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(1);
+    }
 }

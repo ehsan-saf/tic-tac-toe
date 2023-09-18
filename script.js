@@ -23,8 +23,7 @@ const gameBoard = (() =>{
 
 const displayController = (() => {
 
-    const gameboardContainer = document.querySelector(".gameboard-container")
-    const cells = document.querySelectorAll(".cell");
+    const gameboardContainer = document.querySelector(".gameboard-container");    const cells = document.querySelectorAll(".cell");
     addClickEvent();
 
     function addClickEvent() {
@@ -50,6 +49,7 @@ const displayController = (() => {
 
     function showGameBoard() {
         gameboardContainer.classList.remove("hidden");
+        gameboardContainer.classList.add("fadeIn");
     }
 
 
@@ -89,6 +89,7 @@ const playerInput = (() => {
     const infoContainer = document.querySelector(".info-container");
     const playerXName = document.getElementById("x-name").value;
     const playerOName = document.getElementById("o-name").value;
+    infoContainer.addEventListener("animationend", animationFinished);
 
     function setPlayerName() {
         if(playerXName.trim() === "") {
@@ -107,7 +108,12 @@ const playerInput = (() => {
     }
 
     function hideInputs() {
+        infoContainer.classList.add("fadeOut");
+    }
+
+    function animationFinished() {
         infoContainer.classList.add("hidden");
+        displayController.showGameBoard();
     }
 
     return { setPlayerName, hideInputs };
@@ -127,7 +133,6 @@ const game = (() => {
     function start() {
         playerInput.setPlayerName();
         playerInput.hideInputs();
-        displayController.showGameBoard();
     }
 
 
