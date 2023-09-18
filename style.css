@@ -4,8 +4,13 @@
     box-sizing: border-box;
 }
 
+:root {
+    --dark-blue-border: 1px solid #13315c;
+}
+
 body {
     background-color: #F8F7FF;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 main {
@@ -20,6 +25,10 @@ main {
     justify-content: space-between;
 }
 
+.player-names>div {
+    border: var(--dark-blue-border);
+}
+
 
 /* ------------ Restart Button ----------- */
 
@@ -31,8 +40,16 @@ main {
     font-size: 1.5rem;
     letter-spacing: 2px;
     justify-self: center;
+    border: var(--dark-blue-border);
+    background-color: transparent;
+    transition: all 0.2s;
+    cursor: pointer;
 }
 
+.restart-button:hover {
+    color: white;
+    background-color: #13315c;
+}
 
 /* --------------   Game board ---------------- */
 
