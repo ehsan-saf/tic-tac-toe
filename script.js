@@ -23,7 +23,7 @@ const gameBoard = (() =>{
 
 const displayController = (() => {
 
-    const gameboardContainer = document.querySelector(".gameboard-container");    const cells = document.querySelectorAll(".cell");
+    const gameboardContainer = document.querySelector(".game-container");    const cells = document.querySelectorAll(".cell");
     addClickEvent();
 
     function addClickEvent() {

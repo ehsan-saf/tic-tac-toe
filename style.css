@@ -17,20 +17,30 @@ main {
 .player-names {
     margin-top: 8vh;
     display: flex;
-    gap: 20vw;
+    justify-content: space-between;
 }
 
+
+/* ------------ Restart Button ----------- */
+
+.restart-button {
+    width: 173px;
+    height: 70px;
+    border-radius: 10px;
+    border: none;
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+    justify-self: center;
+}
 
 
 /* --------------   Game board ---------------- */
 
-.gameboard-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    gap: 6vh;
-    height: 100%;
+.game-container {
+    display: grid;
+    grid-template-rows: 100px 1fr;
+    justify-content: center;
+    gap: 5vh;
 }
 
 
@@ -48,7 +58,7 @@ main {
     align-items: center;
     justify-content: center;
     font-size: 4rem;
-    background-color: red;
+    background-color: #9381ff;
     border: 1px solid white;
     border-radius: 5px;
     cursor: pointer;
