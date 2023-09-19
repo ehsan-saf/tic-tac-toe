@@ -23,10 +23,13 @@ main {
     margin-top: 8vh;
     display: flex;
     justify-content: space-between;
+    align-items: baseline;
 }
 
 .player-names>div {
     border: var(--dark-blue-border);
+    border-radius: 10px;
+    padding: 10px 20px;
 }
 
 
