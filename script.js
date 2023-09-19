@@ -87,24 +87,25 @@ let player2 = player("", "o");
 const playerInput = (() => {
 
     const infoContainer = document.querySelector(".info-container");
-    const playerXName = document.getElementById("x-name").value;
-    const playerOName = document.getElementById("o-name").value;
+    const playerXName = document.getElementById("x-name");
+    const playerOName = document.getElementById("o-name");
     infoContainer.addEventListener("animationend", animationFinished);
 
     function setPlayerName() {
-        if(playerXName.trim() === "") {
+        if(playerXName.value.trim() === "") {
             player1.name = "Player X";
         }
         else {
-            player1.name = `${playerOName} as X`;
+            player1.name = `${playerXName.value} as X`;
         }
 
-        if(playerOName.trim() === "") {
+        if(playerOName.value.trim() === "") {
             player2.name = "Player O";
         }
         else {
-            player2.name = `${playerOName} as O`;
+            player2.name = `${playerOName.value} as O`;
         }
+        hideInputs();
     }
 
     function hideInputs() {
@@ -120,11 +121,55 @@ const playerInput = (() => {
 
 })();
 
+// ------------ Show player's turn -----------
+
+const showTurn = (() => {
+    const player1Text = document.querySelector(".player1-name");
+    const player2Text = document.querySelector(".player2-name");
+    let winner = 0;
+
+    function showNames() {
+        player1Text.textContent = player1.name;
+        player2Text.textContent = player2.name;
+    }
+
+    
+    function showPlayer(playerNumber) {
+        if(playerNumber === 1) {
+            player1Text.classList.add("fillColor");
+            player2Text.classList.remove("fillColor");
+        }
+        else {
+            player2Text.classList.add("fillColor");
+            player1Text.classList.remove("fillColor");
+        }
+    }
+
+    function showWinner(playerNumber) {
+        player1Text.classList.remove("fillColor");
+        player2Text.classList.remove("fillColor");
+        winner = playerNumber; 
+        congratulateWinner();   
+    }
+
+    function congratulateWinner() {
+        if(winner === 1) {
+            player1Text.textContent = player1.name + " won";
+        }
+        else if(winner === 2) {
+            player2Text.textContent = player2.name + " won";
+        }
+    }
+
+    return { showNames ,showPlayer , showWinner };
+})();
+
 
 // Game module that controls the game flow ----------------
 
 const game = (() => {
 
+    let winner = 0;
     let togglePlayer = true;
     let numberOfTries = 0;
     let startButton = document.querySelector(".start-button");
@@ -132,7 +177,8 @@ const game = (() => {
 
     function start() {
         playerInput.setPlayerName();
-        playerInput.hideInputs();
+        showTurn.showNames();
+        showTurn.showPlayer(1);
     }
 
 
@@ -144,6 +190,7 @@ const game = (() => {
 
     function stop() {
         displayController.removeClickEvent();
+        showTurn.showWinner(winner);
     }
 
     // Continue the game when a cell is clicked -----
@@ -153,19 +200,18 @@ const game = (() => {
         if(numberOfTries <= 9){        
             if(togglePlayer) {
                 gameBoard.add(index, player1.marker);
+                showTurn.showPlayer(2);
             }
             else {
                 gameBoard.add(index, player2.marker);
+                showTurn.showPlayer(1);
             }
             displayController.fillCells();
             togglePlayer = !togglePlayer;
+            
         }
         checkWinner();
         
-    }
-
-    function isTie() {
-        console.log("It's a tie");
     }
 
     function checkWinner() {
@@ -196,20 +242,20 @@ const game = (() => {
             winnerMarker = arr[2];
         }
         if(winnerMarker === "" && numberOfTries === 9) {
-            isTie();
+            winner = 0;
             stop();
         }
         else if(player1.marker === winnerMarker)
         {
-            console.log(`Player 1 as ${winnerMarker} has won`);
+            winner = 1;
             stop();
         }
         else if(player2.marker === winnerMarker) {
-            console.log(`Player 2 as ${winnerMarker} has won`);
+            winner = 2;
             stop();
         }
     }
 
-    return {start, reset, play};
+    return {start, reset, play, winner};
 })();
 

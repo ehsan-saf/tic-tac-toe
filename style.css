@@ -23,13 +23,18 @@ main {
     margin-top: 8vh;
     display: flex;
     justify-content: space-between;
-    align-items: baseline;
+    align-items: flex-start;
 }
 
 .player-names>div {
     border: var(--dark-blue-border);
     border-radius: 10px;
     padding: 10px 20px;
+    font-size: 1.5rem;
+}
+
+.player2-name>span {
+    font-size: 1.8rem;
 }
 
 
@@ -58,7 +63,7 @@ main {
 
 .game-container {
     display: grid;
-    grid-template-rows: 100px 1fr;
+    grid-template-rows: 120px 1fr;
     justify-content: center;
     gap: 5vh;
 }
@@ -207,5 +212,25 @@ input::placeholder {
 
     to {
         transform: scale(1);
+    }
+}
+
+.fillColor {
+    animation-name: fillColor;
+    animation-duration: 0.6s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fillColor {
+    from {
+        background-color: transparent;
+        color: black;
+        scale: 1;
+    }
+
+    to {
+        background-color: #13315c;
+        color: white;
+        scale: 1.3;
     }
 }
